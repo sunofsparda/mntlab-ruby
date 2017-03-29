@@ -30,10 +30,9 @@ real_currency = currency + currency * tax
 usd = (cash / real_currency).to_i
 change = (cash - usd * real_currency).to_i
 
-p "real currency is #{real_currency} BYR"
-p "you can buy #{usd} USD"
+p "1 USD = #{real_currency} BYR (with tax)"
 if change >= ice_cream
-	p "I have #{change} BYR left, and i can buy ice cream ^_^"
+	p "I will buy #{usd} USD, and have #{change} BYR left, so i can buy ice cream ^_^"
 else
-	p "I have #{change} BYR left.. I can't buy ice cream T_T"
+	p "I will buy #{usd} USD, and have #{change} BYR left.. I can't buy an ice cream T_T"
 end
