@@ -24,11 +24,11 @@ b. Курс продажи доллара 11170 + 30% сбор. 
 cash = 5600000
 currency = 11370
 ice_cream = 10000
-tax = 0.32412
+tax = 0.3
 
-real_currency = currency + (currency * tax)
+real_currency = currency + currency * tax
 usd = (cash / real_currency).to_i
-change = cash - ( usd * real_currency )
+change = (cash - usd * real_currency).to_i
 
 p "real currency is #{real_currency} BYR"
 p "you can buy #{usd} USD"
