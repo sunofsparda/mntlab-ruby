@@ -32,7 +32,7 @@ change = (cash - usd * real_currency).to_i
 
 p "1 USD = #{real_currency} BYR (with tax)"
 if change >= ice_cream
-	p "I will buy #{usd} USD, and have #{change} BYR left, so i can buy ice cream ^_^"
+	p "I will buy #{usd} USD, and have #{change} BYR left, so i can buy an ice cream ^_^"
 else
 	p "I will buy #{usd} USD, and have #{change} BYR left.. I can't buy an ice cream T_T"
 end
