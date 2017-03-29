@@ -24,41 +24,16 @@ b. Курс продажи доллара 11170 + 30% сбор. 
 cash = 5600000
 currency = 11370
 ice_cream = 10000
-tax = 0.3x
-real_currency = currency + (currency * 0.3).to_i
-usd = cash / real_currency
-change = cash % real_currency
-p real_currency
-p "you can buy usd 'usd'"
-p "your have #{change.to_f} left"
-if change > ice_cream
-	p "you have #{change.to_i} left, and you can buy ice cream"
+tax = 0.32412
+
+real_currency = currency + (currency * tax)
+usd = (cash / real_currency).to_i
+change = cash - ( usd * real_currency )
+
+p "real currency is #{real_currency} BYR"
+p "you can buy #{usd} USD"
+if change >= ice_cream
+	p "I have #{change} BYR left, and i can buy ice cream ^_^"
 else
-	p "you have #{change.to_i} left,you can't buy ice cream"
+	p "I have #{change} BYR left.. I can't buy ice cream T_T"
 end
-p real_currency
-p usd
-p change
-
-
-
-
-cash = 5600000
-currency = 11370
-ice_cream = 10000
-
-real_currency = currency + (currency * 0.3).to_i
-usd = cash / real_currency
-change = cash % real_currency
-p real_currency
-p "you can buy usd 'usd'"
-
-if change > ice_cream
-	p "I have #{change} left, and i can buy ice cream ^_^"
-else
-	p "I have #{change} left.. I can't buy ice cream T_T"
-end
-p real_currency
-p usd
-p change
-
