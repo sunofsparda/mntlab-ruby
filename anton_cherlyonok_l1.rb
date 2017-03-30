@@ -9,7 +9,6 @@ a. Есть 4 ведра, каждое своего цвета: красн
 =end
 
 buckets = {red: 50, green: 100, blue: 30, yellow: 60}
-
 # Какой цвет у ведра с максимальны количеством шаров?
 bucket_with_max_balls = buckets.invert[(buckets.values.max)]
 p "Maximum balls in #{bucket_with_max_balls} bucket. (dict inversion)"
