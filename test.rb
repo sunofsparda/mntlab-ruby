@@ -352,3 +352,27 @@ p a = %w(a b c d e f)
 p a.map { |e| e.upcase }
 p a.map(&:upcase)
 p a.map(&:size)
+
+
+#################### 
+puts "Day 4 #{brline} #{topic} block #{num += 1}"
+
+
+def say #если без передачи аргумента, то скобки можно не писать
+  puts 'say'
+end
+
+x = def aa
+end
+
+#символы можно конвертировать в proc
+# 2.4.1 :002 > class A
+# 2.4.1 :003?>   p self
+# 2.4.1 :004?>   def say
+# 2.4.1 :005?>     p self
+# 2.4.1 :006?>     end
+# 2.4.1 :007?>   end
+# A
+#  => :say 
+# 2.4.1 :008 > a
+
