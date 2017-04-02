@@ -32,7 +32,18 @@ benchmark(task)
 
 =end
 
-
+array=[1, 2, 3, 4]
+def mega_sum(array, var=0)
+  if block_given?
+    array.inject(0) { |sum, i| sum + yield(i) } + var
+  else
+    array.inject(0) { |sum, i| sum + i } + var
+  end
+end
+p mega_sum(array)
+p mega_sum(array, 10)
+p mega_sum(array) { |i| i ** 2}
+p mega_sum(array, 10) { |i| i **2}
 
 
 
@@ -43,7 +54,7 @@ benchmark(task)
 
 =end
 
-(1..1000).detect{|value| (value % 7 == 3) && (value.to_s.size == 3)}
+puts (1..1000).detect{|value| (value % 7 == 3) && (value.to_s.size == 3)}
 
 
 
@@ -63,7 +74,16 @@ benchmark(task)
 
 =end
 
-
+def method_name(arg1, arg2, *args)
+  if block_given?
+    args.each do |i|
+      yield(i)
+    end
+  else
+    p "ERROR"
+  end
+end
+method_name(1, 2, 3, 4, 5)  {|i| puts i}
 
 
 
@@ -90,4 +110,6 @@ class Array
   end
 end
 
-
+puts [1, 2, 3, 4, 5, 6, 7].find_even { |i| i > 2}.inspect # => [4, 6]
+puts [1, 2, 3, 4, 5, 6, 7].find_even { |i| i > 10}.inspect # => nil
+puts [2, 4, 6, 8, 10, 12, 7].find_even {|i| i.between?(6, 12)}.inspect # => [6, 8, 10, 12]
