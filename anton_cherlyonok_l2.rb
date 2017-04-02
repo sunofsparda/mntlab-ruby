@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 =begin Main Task 1
 
   Написать скрипт, который выводит последовательность чисел ​ Фибонначи 
@@ -109,8 +111,8 @@ number.to_s.reverse.to_i
 
 =end
 
-
-
+ar = [1,6,1,8,2,-1,3,5]
+puts ar[ar.find_index(ar.max)] += 100
 
 
 =begin Task 10
