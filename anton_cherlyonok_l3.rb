@@ -6,7 +6,14 @@
 
 =end
 
-
+def benchmark(task)
+  start_time = Time.now
+  task.call
+  end_time = Time.now
+  puts "#{end_time - start_time}"
+end
+task = proc {sleep(1)}
+benchmark(task)
 
 
 
@@ -34,7 +41,7 @@
 
 =end
 
-
+(1..1000).detect{|value| (value % 7 == 3) && (value.to_s.size == 3)}
 
 
 
@@ -75,6 +82,10 @@
    
 =end
 
-
+class Array
+  def find_even
+    self.select{|n| yield(n) if n.even? }
+  end
+end
 
 
