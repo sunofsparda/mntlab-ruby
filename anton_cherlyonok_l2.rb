@@ -10,8 +10,18 @@
 
 =end
 
+def fibo(n) 
+  a=0
+  b=1 
+  for i in 0..n 
+  c=a+b 
+  print "#{c}" 
+  a=b 
+  b=c 
+  end
+end
 
-
+p fibo(10)
 
 
 =begin
@@ -23,7 +33,9 @@
 
 =end
 
-
+str = "dniMyMdegnahCybuR"
+str = str.reverse.capitalize
+puts str
 
 
 
@@ -34,7 +46,8 @@
 
 =end
 
-
+number = 1234567
+number.to_s.reverse.to_i
 
 
 
