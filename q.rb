@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 class A
   def x
     p 'A'    

@@ -59,6 +59,7 @@ number.to_s.reverse.to_i
 
 =end
 
+a = 123456
 
 
 
@@ -69,8 +70,8 @@ number.to_s.reverse.to_i
 	
 =end
 
-
-
+str = "It's a Cat! CAAaaaaaaAT!"
+str.count('Aa')
 
 
 =begin Task 6
@@ -100,8 +101,8 @@ number.to_s.reverse.to_i
   
 =end
 
-
-
+shop = { milk: 10, bread: 8, cornflakes: 12, ice_cream: 15, pie: 20}
+shop.values_at(15)
 
 
 =begin Task 9

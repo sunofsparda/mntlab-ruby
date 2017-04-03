@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 p self
 def say
   p 'ss'
