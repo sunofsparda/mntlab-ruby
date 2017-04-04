@@ -396,6 +396,141 @@ logger { 1/0 }
 
 
 
+#################### 
+puts "Day 5 #{brline} Работа с файлами block #{num += 1}"
+
+# open, modify, close!
+IO.read('config.yaml') 
+
+### Перенаправление потоков
+# require logger
+# write('string')
+
+# File.delete('stdout.log') if File.exists?('stdout.log') # проверка на существование и удаление если есть
+# k = $stdout
+# $stdout = File.open('stdout.log', "w")
+# puts 1
+# puts 'hello world'
+# k.close
+
+###
+std = $stdin
+$stdin = File.open('stdout.log')
+puts 'hello world'
+x = gets
+puts x
+x = gets
+puts x
+std.close
+
+###
+f = File.open("config.yaml")
+puts f.read
+puts f.read
+f.close
+###
+File.delete('write.txt') if File.exists?('write.txt') # проверка на существование и удаление если есть
+f = File.open('write.txt', "w")
+f.write('hello world')
+f.close
+
+
+f = File.open('write.txt', "a")
+f.write('sprint is cool')
+f.close
+
+
+f = File.open('write.txt', "a")
+f.write("\nfrom new line")
+f.close
+
+f = File.open('write.txt', "a") # "w" - перезапишет
+f.puts("1 sprint is cool")
+f.puts("2 sprint is cool") # puts writes \n at the end of the line
+f.close
+
+f = File.open('write.txt', "a") do |f| # что бы не закрывать файл руками, потому что лень
+f.puts("q sprint is cool")
+end
+
+
+f = File.open('config.yaml').each do |l|
+  p l
+  p l.chomp # что бы избежать \n
+end
+
+
+###
+
+f = File.open('config.yaml')
+while (l = f.gets.chomp) && l != 'email:'
+  p l
+end
+
+###
+
+f = File.open('write.txt', 'w') do |f|
+  f.puts('q')
+end
+
+#################### 
+puts "Day 5 #{brline} подсчёт '#' строк в config.yaml block #{num += 1}"
+puts File.open('config.yaml').count{|line| line.start_with?("#")  }
+
+
+#################### 
+puts "Day 5 #{brline} работа с FS block #{num += 1} \n Dir"
+puts Dir.glob('*')
+
+#################### 
+puts "Day 5 #{brline} работа с FS block #{num += 1} \n FileUtils"
+require 'fileutils'
+FileUtils.touch('fff.txt')
+
+
+#################### 
+puts "Day 5 #{brline} работа с FS block #{num += 1} \n Pathname"
+require 'pathname'
+p Pathname.pwd
+puts File.expand_path('.')
+
+#################### 
+puts "Day 5 #{brline} работа с Внешними утилитами block #{num += 1} \n"
+`ls -la` # возращает в stdout
+c = '-a'
+`ls #{c}`
+%x(ls -a)
+%w(fqwe qweqwe qwewq)
+
+#################### 
+puts "Day 5 #{brline} работа с Внешними утилитами block #{num += 1} \n метод system"
+s = system('ls -a')
+puts s
+s = system('xxxa')
+puts s
+s = system('exit 1')
+puts s
+
+exec("ls -a")
+
+#################### 
+puts "Day 5 #{brline} работа с Внешними утилитами block #{num += 1} \n module open3"
+
+# require 'open3'
+# cmd = 'ping google.com'
+# Open3.popen3(cmd) do | stdin, stdout, stderr, wait |
+#   status = wait.value
+#   unless status.success?
+#     abort 'ffdf'    
+#   end
+# end
+
+system("echo", "123")
+system("ls", "arg")
+system("echo #{arg}") # DO NOT DO LIKE THIS!!! EXPLOTIT!!!
+
+
+
 
 
 
