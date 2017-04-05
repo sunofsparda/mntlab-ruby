@@ -43,7 +43,7 @@ class Echo < Cli
   end
 
   def self.description
-    '- Display a line of text'
+    'display a text line'
   end
 
   def run(*args)
