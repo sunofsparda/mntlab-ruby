@@ -1,15 +1,12 @@
 #!/usr/bin/env ruby
 
 class Cli
-  COMMANDS = []
+  Commands = []
 
   def self.command_by_name(name)
-    comm = COMMANDS.find { |value| value.name == name }
-    if comm.nil?
-      nil
-    else
-      comm.new.run($first_arg)
-    end
+    command = name.split(" ")
+    command_class = Commands.find{|e| e.name == command[0]}
+    command_class.new.run(command[1]) if command_class != nil
   end
 
   protected
@@ -19,7 +16,6 @@ class Cli
     puts "script name: #{$0}"
     puts "#{args[0]}"
   end
-
 end
 
 class Help < Cli
@@ -34,10 +30,10 @@ class Help < Cli
 
   def run(*args)
     if args[0] != nil
-      cmd = Cli::COMMANDS.find{|e| e.name == args[0]}
+      cmd = Cli::Commands.find{|e| e.name == args[0]}
       say "#{cmd.name} #{cmd.description}"
     else
-    Cli::COMMANDS.each{|value| say "#{value.name} #{value.description}"}
+    Cli::Commands.each{|value| say "#{value.name} #{value.description}"}
     end
   end
 
@@ -51,14 +47,14 @@ class Echo < Cli
   end
 
   def self.description
-    "display text"
+    "- Display a line of text"
   end
 
   def run(*args)
     p (args[0])
   end
-
 end
+
 
 class Date < Cli
 
@@ -77,8 +73,47 @@ class Date < Cli
 end
 
 
+class Uptime < Cli
+  def self.name
+    "uptime"
+  end
+  def self.description
+    "show uptime"  
+  end
+  def run(*args)
+    uptime = `cat /proc/uptime`.split(" ")[0].to_i
+    h =  uptime_value / 3600
+    m =  (uptime_value - h * 3600) / 60
+    s = (uptime_value - h * 3600) % 60
+    p "#{h}:#{m}:#{s}"
+  end
+end
 
 
+
+class Ping < Cli
+  
+  def self.name
+    "ping"
+  end
+
+  def self.description
+    "get echo request\nusing: ping https://www.tut.by/"
+  end
+
+  def run(*args)
+    require 'net/http'
+    uri = URI("https://www.#{args[0]}/")
+    res = Net::HTTP.get_response(uri)
+    if res.is_a?(Net::HTTPSuccess)
+      puts 'true' 
+    else 
+      puts 'false'
+    end
+
+  end
+
+end
 
 
 
@@ -90,17 +125,13 @@ def greeting
   print user, "@", hostname, " #cli >> "
 end
 
-Cli::COMMANDS.push( Help, Echo, Date ) # Uptime, Ping
+Cli::Commands.push( Help, Echo, Date, Uptime, Ping )
 input_command = ""
 
-while input_command != "exit"
+while input_command != 0
   greeting
   input_command = gets.strip.downcase
   Cli.command_by_name(input_command)
 
 end
-
-
-
-
 
