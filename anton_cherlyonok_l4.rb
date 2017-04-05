@@ -76,9 +76,9 @@ class Uptime < Cli
 
   def run(*_args)
     uptime = `cat /proc/uptime`.split(' ')[0].to_i
-    h =  uptime_value / 3600
-    m =  (uptime_value - h * 3600) / 60
-    s = (uptime_value - h * 3600) % 60
+    h =  uptime / 3600
+    m =  (uptime - h * 3600) / 60
+    s = (uptime - h * 3600) % 60
     p "#{h}:#{m}:#{s}"
   end
 end
@@ -89,7 +89,7 @@ class Ping < Cli
   end
 
   def self.description
-    "get echo request\nusing: ping https://www.tut.by/"
+    "get echo request\nexample: ping tut.by"
   end
 
   def run(*args)
@@ -117,5 +117,4 @@ while input_command != 0
   greeting
   input_command = gets.strip.downcase
   Cli.command_by_name(input_command)
-
 end
